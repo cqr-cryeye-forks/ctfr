@@ -39,7 +39,7 @@ def main():
     target = clear_url(target=args.domain)
     output = args.output
     subdomains = []
-    resp = requests.get(f'https://crt.sh/?q=%.{target}&output=json', headers=headers, verify=True)
+    resp = requests.get(f'https://crt.sh/?q=%.{target}&output=json', headers=headers, verify=False)
     if resp.status_code == 200:
         subdomains = sorted(set([item['name_value'] for item in resp.json()]))
     save_subdomains(subdomains=subdomains, output_file=output)
