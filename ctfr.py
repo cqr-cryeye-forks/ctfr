@@ -33,6 +33,7 @@ def clear_subdomains(subdomains: dict) -> list:
 
 
 def save_subdomains(subdomains: list, output_file: str) -> NoReturn:
+    subdomains = [{'subdomain': s} for s in subdomains]
     with open(output_file, 'w') as f:
         json.dump(subdomains, f, indent=2)
 
