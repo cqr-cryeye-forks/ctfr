@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import argparse
 import json
 import itertools
@@ -17,7 +18,7 @@ headers = {
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--domain', type=str, required=True, help='Target domain.')
-    parser.add_argument('-o', '--output', type=str, help='Output file.', default='output.json')
+    parser.add_argument('-o', '--output', type=str, required=False, help='Output file.', default='output.json')
     return parser.parse_args()
 
 
