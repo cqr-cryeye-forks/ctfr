@@ -5,6 +5,9 @@ import json
 from typing import NoReturn
 
 import requests
+import urllib3
+
+urllib3.disable_warnings()
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:87.0) Gecko/20100101 Firefox/87.0',
