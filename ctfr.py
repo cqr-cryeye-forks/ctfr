@@ -18,7 +18,6 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--domain', type=str, required=True, help='Target domain.')
     parser.add_argument('-o', '--output', type=str, help='Output file.', default='output.json')
-    parser.add_argument('-v', '--verbose', type=bool, help='Verbose print.', default=True)
     return parser.parse_args()
 
 
@@ -40,13 +39,12 @@ def main():
     print('Start!')
     args = parse_args()
     target = clear_url(target=args.domain).strip()
-    if args.verbose:
-        print(target)
+    print(target)
     output = args.output
     resp = requests.get(f'https://crt.sh/?q={target}&output=json', headers=headers, verify=False)
-    if args.verbose:
-        print(resp.status_code, resp.content.decode("UTF-8"))
+    print(resp.status_code)
     subdomains = clear_subdomains(subdomains=resp.json()) if resp.status_code == 200 else []
+    [print(s) for s in subdomains]
     save_subdomains(subdomains=subdomains, output_file=output)
     print("Done. Have a nice day! ;).")
 
