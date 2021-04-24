@@ -14,7 +14,7 @@ headers = {
 }
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--domain', type=str, required=True, help='Target domain.')
     parser.add_argument('-o', '--output', type=str, help='Output file.', default='output.json')
@@ -34,7 +34,7 @@ def save_subdomains(subdomains: list, output_file: str) -> NoReturn:
 def main():
     print('Start!')
     args = parse_args()
-    target = clear_url(target=args.domain)
+    target = clear_url(target=args.domain).strip()
     if args.verbose:
         print(target)
     output = args.output
