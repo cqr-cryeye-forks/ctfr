@@ -24,6 +24,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--domain', type=str, required=True, help='Target domain.')
     parser.add_argument('-o', '--output', type=str, help='Output file.', default='output.json')
+    parser.add_argument('-v', '--verbose', type=bool, help='Verbose print.', default=False)
     return parser.parse_args()
 
 
@@ -43,6 +44,8 @@ def main():
     output = args.output
     subdomains = []
     resp = requests.get(f'https://crt.sh/?q=%.{target}&output=json', headers=headers, verify=False)
+    if args.verbose:
+        print(resp.status_code, resp.content.decode("UTF-8"))
     if resp.status_code == 200:
         subdomains = sorted(set([item['name_value'] for item in resp.json()]))
     save_subdomains(subdomains=subdomains, output_file=output)
