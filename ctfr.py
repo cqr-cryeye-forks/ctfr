@@ -44,6 +44,7 @@ def main():
     output = args.output
     subdomains = []
     resp = requests.get(f'https://crt.sh/?q=%.{target}&output=json', headers=headers, verify=False)
+    print(resp.status_code, resp.content.decode("UTF-8"))
     if args.verbose:
         print(resp.status_code, resp.content.decode("UTF-8"))
     if resp.status_code == 200:
