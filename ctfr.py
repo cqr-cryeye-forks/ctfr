@@ -22,6 +22,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def clear_url(target: str) -> str:
+    target = target.strip()
     return target.replace('www.', '', 1) if target.startswith('www.') else target
 
 
